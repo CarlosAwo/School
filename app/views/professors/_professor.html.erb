@@ -1,0 +1,19 @@
+<tr id="<%= dom_id professor %>">
+  <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">     <%= professor.first_name %>  </td>
+  <td class="whitespace-nowrap px-4 py-2 text-gray-700">    <%= professor.last_name %>   </td>
+  <td class="whitespace-nowrap px-4 py-2 text-gray-700">    <%= professor.email %>            </td>
+  <td class="whitespace-nowrap px-4 py-2 text-gray-700">    <%= professor.age %>                </td>
+  <td class="whitespace-nowrap px-4 py-2 text-gray-700">    <%= professor.birth_place %> </td>
+  <td class="whitespace-nowrap px-4 py-2 text-gray-700">    <%= professor.birth_date %>  </td>
+  <td class="whitespace-nowrap px-4 py-2 text-gray-700">    <%= professor.gender %>         </td>
+  <td class="whitespace-nowrap px-4 py-2 text-gray-700">    <%= professor.residence %>     </td>
+  <td class="whitespace-nowrap px-4 py-2 text-gray-700">    <%= professor.phone.join("-") %></td>
+  <td class="whitespace-nowrap px-4 py-2 flex justify-between">
+    <% if action_name != "show" %>
+      <%= link_to "Show this professor", professor, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= link_to 'Edit this professor', edit_professor_path(professor), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= link_to "Destroy", professor_path(professor),class:"rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" , data: { turbo_method: :delete, turbo_confirm: "Are you sure?"   } %>
+      <hr class="mt-6">
+    <% end %>
+  </td>
+</tr>

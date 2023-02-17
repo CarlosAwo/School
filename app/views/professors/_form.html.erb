@@ -1,0 +1,66 @@
+<%= form_with(model: professor, class: "contents") do |form| %>
+  <% if professor.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(professor.errors.count, "error") %> prohibited this professor from being saved:</h2>
+
+      <ul>
+        <% professor.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name, class: "input" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name, class: "input" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :birth_place %>
+    <%= form.text_field :birth_place, class: "input" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :birth_date %>
+    <%= form.date_field :birth_date, class: "input" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :gender %>
+    <%= form.select :gender,options_for_select(Professor.genders.to_a.map(&:reverse).to_h) , {}, {  class: "input" }%>
+  </div>
+
+  <div class="my-5"  data-controller="clone"    >
+    <%= form.label :phone  %>
+    <div data-clone-target="destination" class="flex justify-between">
+      <% if @professor.phone.empty?  %>
+        <%= form.text_field :phone,  name:"professor[phone][]", class: "input" , "data-clone-target":"cible"  %>
+      <%else%>
+        <% @professor.phone.each do |p| %>
+          <%= form.text_field :phone,  name:"professor[phone][]", class: "input" , value:p %>
+        <%end %>
+      <%end %>
+      <button data-action="click->clone#clone" class="btn-primary"><i class="fa-solid fa-circle-plus"></i></button>
+    </div>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :email %>
+    <%= form.text_field :email, class: "input" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :residence %>
+    <%= form.text_field :residence, class: "input" %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "btn-primary" %>
+  </div>
+<% end %>
