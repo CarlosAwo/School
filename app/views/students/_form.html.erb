@@ -11,6 +11,7 @@
     </div>
   <% end %>
 
+
   <div class="my-5">
     <%= form.label :first_name %>
     <%= form.text_field :first_name, class: "input" %>
@@ -32,8 +33,10 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :gender %>
-    <%= form.select :gender,options_for_select(Student.genders.to_a.map(&:reverse).to_h) , {}, {  class: "input" }%>
+    <% Student.genders.each do |key, value| %>
+      <%= form.radio_button :gender, key, checked:true %>
+      <%= form.label :gender.to_s+'_'+key.downcase, value %>
+    <%end %>
   </div>
 
   <div class="my-5"  data-controller="clone"    >
