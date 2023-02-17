@@ -42,10 +42,10 @@
     <%= form.label :phone  %>
     <div data-clone-target="destination" class="flex justify-between">
       <% if @student.phone.empty?  %>
-        <%= form.text_field :phone,  name:"student[phone][]", class: "input" , "data-clone-target":"cible"  %>
+        <%= form.telephone_field :phone,  name:"student[phone][]", class: "input" , "data-clone-target":"cible"  %>
       <%else%>
         <% @student.phone.each do |p| %>
-          <%= form.text_field :phone,  name:"student[phone][]", class: "input" , value:p %>
+          <%= form.telephone_field :phone,  name:"student[phone][]", class: "input" , value:p %>
         <%end %>
       <%end %>
       <button data-action="click->clone#clone" class="btn-primary"><i class="fa-solid fa-circle-plus"></i></button>
