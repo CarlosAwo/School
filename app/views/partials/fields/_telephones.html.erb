@@ -1,0 +1,11 @@
+    <%= f.label name  %>
+    <div data-clone-target="destination" class="flex justify-between"  data-controller="clone">
+      <% if resource.phone.empty?  %>
+        <%= f.telephone_field name,  name:"#{resource.class.name.downcase}[#{name}][]", class: "input" , "data-clone-target":"cible"  %>
+      <%else%>
+        <% resource.phone.each do |p| %>
+          <%= f.telephone_field name, name:"#{resource.class.name.downcase}[#{name}][]", class: "input" , value:p %>
+        <%end %>
+      <%end %>
+      <button data-action="click->clone#clone" class="btn-primary"><i class="fa-solid fa-circle-plus"></i></button>
+    </div>

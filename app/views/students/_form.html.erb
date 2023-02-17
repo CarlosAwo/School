@@ -1,10 +1,10 @@
-<%= form_with(model: student, class: "contents") do |form| %>
-  <% if student.errors.any? %>
+<%= form_with(model: resource, class: "contents") do |f| %>
+  <% if resource.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
-      <h2><%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:</h2>
+      <h2><%= pluralize(resource.errors.count, "error") %> prohibited this <%= resource.class.name %> from being saved:</h2>
 
       <ul>
-        <% student.errors.each do |error| %>
+        <% resource.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -12,57 +12,38 @@
   <% end %>
 
   <div class="my-5">
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name, class: "input" %>
+    <%= render "partials/fields/text" ,name: :first_name, f:f%>
   </div>
 
   <div class="my-5">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name, class: "input" %>
+    <%= render "partials/fields/text" ,name: :last_name, f:f%>
   </div>
 
   <div class="my-5">
-    <%= form.label :birth_place %>
-    <%= form.text_field :birth_place, class: "input" %>
+    <%= render "partials/fields/text" ,name: :birth_place, f:f%>
   </div>
 
   <div class="my-5">
-    <%= form.label :birth_date %>
-    <%= form.date_field :birth_date, class: "input" %>
+    <%= render "partials/fields/date" ,name: :birth_date, f:f%>
   </div>
 
   <div class="my-5">
-    <% Student.genders.each do |key, value| %>
-      <%= form.radio_button :gender, key, checked:true %>
-      <%= form.label :gender.to_s+'_'+key.downcase, value %>
-    <%end %>
+    <%= render "partials/fields/radio" ,name: :gender, f:f , hash_collection:resource.class.genders%>
   </div>
 
-  <div class="my-5"  data-controller="clone"    >
-    <%= form.label :phone  %>
-    <div data-clone-target="destination" class="flex justify-between">
-      <% if @student.phone.empty?  %>
-        <%= form.telephone_field :phone,  name:"student[phone][]", class: "input" , "data-clone-target":"cible"  %>
-      <%else%>
-        <% @student.phone.each do |p| %>
-          <%= form.telephone_field :phone,  name:"student[phone][]", class: "input" , value:p %>
-        <%end %>
-      <%end %>
-      <button data-action="click->clone#clone" class="btn-primary"><i class="fa-solid fa-circle-plus"></i></button>
-    </div>
+  <div class="my-5"     >
+    <%= render "partials/fields/telephones" ,name: :phone, f:f , resource:resource %>
   </div>
 
   <div class="my-5">
-    <%= form.label :email %>
-    <%= form.text_field :email, class: "input" %>
+    <%= render "partials/fields/email" ,name: :email, f:f%>
   </div>
 
   <div class="my-5">
-    <%= form.label :residence %>
-    <%= form.text_field :residence, class: "input" %>
+    <%= render "partials/fields/text" ,name: :residence, f:f%>
   </div>
 
   <div class="inline">
-    <%= form.submit class: "btn-primary" %>
+    <%= f.submit class: "btn-primary" %>
   </div>
 <% end %>
