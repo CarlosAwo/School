@@ -14,19 +14,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_17_161907) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "branches", force: :cascade do |t|
-    t.string "name"
-    t.float "amount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "fields", force: :cascade do |t|
-    t.string "name"
-    t.float "amount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "professors", force: :cascade do |t|
     t.string "first_name"
@@ -38,20 +25,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_17_161907) do
     t.string "gender"
     t.integer "age"
     t.string "residence"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "students", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "birth_place"
-    t.date "birth_date"
-    t.string "gender"
-    t.text "phone", default: [], array: true
-    t.string "email"
-    t.string "residence"
-    t.integer "age"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
