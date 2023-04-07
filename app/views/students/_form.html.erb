@@ -11,37 +11,11 @@
     </div>
   <% end %>
 
-  <div class="my-5">
-    <%= render "partials/fields/text" ,name: :first_name, f:f%>
-  </div>
-
-  <div class="my-5">
-    <%= render "partials/fields/text" ,name: :last_name, f:f%>
-  </div>
-
-  <div class="my-5">
-    <%= render "partials/fields/text" ,name: :birth_place, f:f%>
-  </div>
-
-  <div class="my-5">
-    <%= render "partials/fields/date" ,name: :birth_date, f:f%>
-  </div>
-
-  <div class="my-5">
-    <%= render "partials/fields/radio" ,name: :gender, f:f , hash_collection:resource.class.genders%>
-  </div>
-
-  <div class="my-5"     >
-    <%= render "partials/fields/telephones" ,name: :phone, f:f , resource:resource %>
-  </div>
-
-  <div class="my-5">
-    <%= render "partials/fields/email" ,name: :email, f:f%>
-  </div>
-
-  <div class="my-5">
-    <%= render "partials/fields/text" ,name: :residence, f:f%>
-  </div>
+  <% send("student_forms").each do |attribute,v| %>
+      <div class="my-5">
+      <%= render "partials/fields/#{v[:field]}" ,name:attribute, f:f , resource: resource , label_name:v[:title] , v:v%>
+    </div>
+  <%end %>
 
   <div class="inline">
     <%= f.submit class: "btn-primary" %>

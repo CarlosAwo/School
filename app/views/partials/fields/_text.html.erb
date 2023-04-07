@@ -1,2 +1,2 @@
-<%= f.label name %>
-<%= f.text_field name, class: "input" %>
+<%= f.label label_name , for:"#{resource.class.name.downcase}_#{name}" %>
+<%= f.text_field name,  class: "input" %>

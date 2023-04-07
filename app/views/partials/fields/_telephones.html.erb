@@ -1,4 +1,4 @@
-    <%= f.label name  %>
+    <%= f.label label_name  %>
     <div data-clone-target="destination" class="flex justify-between"  data-controller="clone">
       <% if resource.phone.empty?  %>
         <%= f.telephone_field name,  name:"#{resource.class.name.downcase}[#{name}][]", class: "input" , "data-clone-target":"cible"  %>

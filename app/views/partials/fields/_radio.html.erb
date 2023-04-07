@@ -1,4 +1,4 @@
-    <% hash_collection.each do |key, value| %>
-      <%= f.radio_button name, key, checked:true %>
+    <% v[:collection].each do |key, value| %>
+      <%= f.radio_button name, key %>
       <%= f.label name.to_s+'_'+key.downcase, value %>
     <%end %>
