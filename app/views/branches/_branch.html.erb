@@ -1,0 +1,11 @@
+<tr id="<%= dom_id branch %>">
+  <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">     <%= branch.name%>  </td>
+  <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">     <%= branch.amount%>  </td>
+  <td class="whitespace-nowrap px-4 py-2 flex justify-between">
+    <% if action_name != "show" %>
+      <%= link_to 'Edit this branch', edit_branch_path(branch), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= link_to "Destroy",  branch_path(branch),class:"rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" , data: { turbo_method: :delete, turbo_confirm: "Are you sure?"   } %>
+      <hr class="mt-6">
+    <% end %>
+  </td>
+</tr>
