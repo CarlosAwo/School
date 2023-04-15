@@ -1,4 +1,6 @@
 class Student < ApplicationRecord
+  belongs_to :branch
+
   enum gender:{H:"Homme", F:"Femme" }
 
   def age
