@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :fields
   get 'dashboard/index'
   resources :branches
   resources :class_rooms

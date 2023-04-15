@@ -10,22 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_15_075540) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_15_084343) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "branches", force: :cascade do |t|
     t.string "name"
+    t.string "sigle"
+    t.string "duration"
     t.float "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "sigle"
-    t.string "duration"
   end
 
   create_table "class_rooms", force: :cascade do |t|
     t.string "name"
     t.integer "capacity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "fields", force: :cascade do |t|
+    t.string "name"
+    t.string "sigle"
+    t.integer "duration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -38,7 +46,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_15_075540) do
     t.date "birth_date"
     t.string "birth_place"
     t.string "gender"
-    t.integer "age"
     t.string "residence"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -53,7 +60,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_15_075540) do
     t.text "phone", default: [], array: true
     t.string "email"
     t.string "residence"
-    t.integer "age"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
