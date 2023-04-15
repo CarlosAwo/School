@@ -8,7 +8,6 @@ class CreateProfessors < ActiveRecord::Migration[7.0]
       t.date :birth_date
       t.string :birth_place
       t.string :gender
-      t.integer :age
       t.string :residence
 
       t.timestamps

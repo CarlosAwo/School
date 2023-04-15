@@ -9,7 +9,6 @@ class CreateStudents < ActiveRecord::Migration[7.0]
       t.text :phone , array:true , default: []
       t.string :email
       t.string :residence
-      t.integer :age
 
       t.timestamps
     end
