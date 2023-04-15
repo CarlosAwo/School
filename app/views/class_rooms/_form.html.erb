@@ -1,0 +1,27 @@
+<%= form_with(model: class_room, class: "contents") do |form| %>
+  <% if class_room.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(class_room.errors.count, "error") %> prohibited this class_room from being saved:</h2>
+
+      <ul>
+        <% class_room.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :name %>
+    <%= form.text_field :email, class: "input" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :capacity %>
+    <%= form.number_field :capacity, class: "input" %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "btn-primary" %>
+  </div>
+<% end %>
