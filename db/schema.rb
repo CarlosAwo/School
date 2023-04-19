@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_15_090153) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_19_115109) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,6 +28,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_15_090153) do
     t.integer "capacity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "coefficients", force: :cascade do |t|
+    t.bigint "field_id", null: false
+    t.bigint "branch_id", null: false
+    t.integer "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["branch_id"], name: "index_coefficients_on_branch_id"
+    t.index ["field_id"], name: "index_coefficients_on_field_id"
   end
 
   create_table "fields", force: :cascade do |t|
@@ -68,6 +78,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_15_090153) do
     t.index ["branch_id"], name: "index_students_on_branch_id"
   end
 
+  add_foreign_key "coefficients", "branches"
+  add_foreign_key "coefficients", "fields"
   add_foreign_key "fields", "branches"
   add_foreign_key "students", "branches"
 end
