@@ -1,4 +1,4 @@
 class Field < ApplicationRecord
-  belongs_to :branch
-  belongs_to :professor
+  has_and_belongs_to_many :branches
+  belongs_to :professor, optional: true
 end
