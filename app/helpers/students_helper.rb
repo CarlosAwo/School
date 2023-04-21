@@ -34,7 +34,12 @@ module StudentsHelper
       'residence': {
         'title': 'Lieu de Résidence',
         'field': 'text',
-      }
+      },
+      'branch_id': {
+        'title': 'Filiere',
+        'field': 'select',
+        "select_collection": Branch.all.pluck(:name, :id)
+      },
     }
   end
   

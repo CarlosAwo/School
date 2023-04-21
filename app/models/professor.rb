@@ -1,5 +1,5 @@
 class Professor < ApplicationRecord
-
+  has_many :fields
   
   enum gender:{H:"Homme" , F:"Femme"}
 
