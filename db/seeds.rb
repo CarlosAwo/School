@@ -6,23 +6,56 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+students = []
+professors = []
+fields = []
+branches = []
+fields_list = ["Economie Generale", 'Maths Generale', 'Maths Financiere']
+braches_list = ["Reseaux Telecommunications", 'Gestion Resources Humaines', 'Genie Civil', 'Genie Logiciel']
 
-b1 = Branch.create(name: "Reseaux et Telecommunications", sigle: "RT", amount:200, duration:5)
-b2 = Branch.create(name: "Gestion des Resources Humaines", sigle: "GRH", amount:200, duration:5)
-b3 = Branch.create(name: "Banque et Finances", sigle: "BF", amount:200, duration:5)
-b4 = Branch.create(name: "Genie Civil", sigle: "GC", amount:200, duration:5)
-b5 = Branch.create(name: "Genie Logiciel", sigle: "GL", amount:200, duration:5)
+braches_list.each do |branch|
+    s = Branch.create(name: branch, sigle: branch.split.map(&:first).join, amount:200, duration:5)
+    branches.push(s)
+end
 
-s1 = Student.create(first_name:"Awo", last_name:"Carlos",email:"awocarlos55@gamil.com",birth_date: "22-12-2000", branch: b1)
-s2 = Student.create(first_name:"Idi", last_name:"Boubacar",email:"idi55@gamil.com",birth_date: "22-12-2000", branch: b2)
-s3 = Student.create(first_name:"Sani", last_name:"Koure",email:"sqni@gamil.com",birth_date: "22-12-2000", branch: b3)
-s4 = Student.create(first_name:"Ibou", last_name:"lele",email:"lele@gamil.com",birth_date: "22-12-2000", branch: b4)
 
-f1 = Field.create(name: 'Economie Generale', sigle:"EG", duration:20, branches:[b1])
-f2 = Field.create(name: 'Maths Generale', sigle:"MG", duration:20, branches:[b2])
-f3 = Field.create(name: 'Maths Financiere', sigle:"MF", duration:20, branches:[b3])
+10.times do |i| 
+    first_name = Faker::Name.name.split(' ')[0]
+    last_name = Faker::Name.name.split(' ')[0]
+    email = "#{first_name}#{last_name}#{rand(1..10)}@gmail.com"
+    birth_date = "#{rand(1..24)}-#{rand(1..12)}-#{rand(1990..2010)}"
 
-p1 = Professor.create(first_name:"Awo", last_name:"Carlos",email:"awocarlos55@gamil.com",birth_date: "22-12-2000")
-p2 = Professor.create(first_name:"Awo", last_name:"Carlos",email:"awocarlos55@gamil.com",birth_date: "22-12-2000")
-p3 = Professor.create(first_name:"Awo", last_name:"Carlos",email:"awocarlos55@gamil.com",birth_date: "22-12-2000")
+    s = Student.create(
+        first_name: first_name, 
+        last_name: last_name, 
+        email: email,
+        birth_date: birth_date,
+        birth_place: Faker::Address.country, 
+        branch: branches[rand(0..(branches.length-1))]
+    )
 
+    students.push(s)
+end
+
+10.times do |i| 
+    first_name = Faker::Name.name.split(' ')[0]
+    last_name = Faker::Name.name.split(' ')[0]
+    email = "#{first_name}#{last_name}#{rand(1..10)}@gmail.com"
+    birth_date = "#{rand(1..24)}-#{rand(1..12)}-#{rand(1990..2010)}"
+
+    s = Professor.create(
+        first_name: first_name, 
+        last_name: last_name, 
+        email: email,
+        birth_date: birth_date,
+        birth_place: Faker::Address.country
+    )
+
+    professors.push(s)
+end
+
+
+fields_list.each do |field|
+    s = Field.create(name: field, sigle: field.split.map(&:first).join, duration:5)
+    fields.push(s)
+end
