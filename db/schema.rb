@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_21_000256) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_21_200458) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_000256) do
     t.float "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "branches_fields", id: false, force: :cascade do |t|
+    t.bigint "field_id"
+    t.bigint "branch_id"
+    t.index ["branch_id"], name: "index_branches_fields_on_branch_id"
+    t.index ["field_id"], name: "index_branches_fields_on_field_id"
   end
 
   create_table "class_rooms", force: :cascade do |t|
@@ -59,9 +66,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_000256) do
     t.integer "duration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "branch_id", null: false
-    t.bigint "professor_id", null: false
-    t.index ["branch_id"], name: "index_fields_on_branch_id"
+    t.bigint "professor_id"
     t.index ["professor_id"], name: "index_fields_on_professor_id"
   end
 
@@ -98,7 +103,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_000256) do
   add_foreign_key "courses", "branches"
   add_foreign_key "courses", "class_rooms"
   add_foreign_key "courses", "professors"
-  add_foreign_key "fields", "branches"
   add_foreign_key "fields", "professors"
   add_foreign_key "students", "branches"
 end
