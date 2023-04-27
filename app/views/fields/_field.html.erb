@@ -1,22 +1,14 @@
-<div id="<%= dom_id field %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
-    <%= field.name %>
-  </p>
+<tr id="<%= dom_id field %>">
+  <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">      <%= field.name %>  </td>
+  <td class="whitespace-nowrap px-4 py-2 text-gray-700">     <%= field.sigle %>  </td>
+  <td class="whitespace-nowrap px-4 py-2 text-gray-700">        <%= field.duration %>            </td>
+  <td class="whitespace-nowrap px-4 py-2 flex justify-between">
+    <% if action_name != "show" %>
+      <%= link_to "Show this professor", field, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= link_to 'Edit this professor', edit_field_path(field), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= link_to "Destroy", field_path(field),class:"rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" , data: { turbo_method: :delete, turbo_confirm: "Are you sure?"   } %>
+      <hr class="mt-6">
+    <% end %>
+  </td>
+</tr>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Sigle:</strong>
-    <%= field.sigle %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Duration:</strong>
-    <%= field.duration %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this field", field, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this field', edit_field_path(field), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
-</div>
