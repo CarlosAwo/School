@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_17_131858) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_17_143551) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,6 +44,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_17_131858) do
     t.index ["command_id"], name: "index_measures_on_command_id"
   end
 
+  create_table "partial_payments", force: :cascade do |t|
+    t.float "amount"
+    t.float "rest"
+    t.string "reference"
+    t.bigint "payment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["payment_id"], name: "index_partial_payments_on_payment_id"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.bigint "command_id", null: false
+    t.float "amount"
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["command_id"], name: "index_payments_on_command_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -74,5 +93,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_17_131858) do
   add_foreign_key "commands", "users"
   add_foreign_key "customers", "users"
   add_foreign_key "measures", "commands"
+  add_foreign_key "partial_payments", "payments"
+  add_foreign_key "payments", "commands"
   add_foreign_key "products", "users"
 end
