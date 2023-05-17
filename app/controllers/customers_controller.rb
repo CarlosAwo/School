@@ -21,7 +21,7 @@ class CustomersController < ApplicationController
 
   # POST /customers or /customers.json
   def create
-    @customer = Customer.new(customer_params)
+    @customer = Customer.new(customer_params, user: current_user)
 
     respond_to do |format|
       if @customer.save
@@ -30,6 +30,7 @@ class CustomersController < ApplicationController
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @customer.errors, status: :unprocessable_entity }
+        console
       end
     end
   end
@@ -65,6 +66,6 @@ class CustomersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def customer_params
-      params.require(:customer).permit(:name, :address, :phone, :user_id)
+      params.require(:customer).permit(:name, :address, :phone, :user_id )
     end
 end

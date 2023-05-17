@@ -1,6 +1,6 @@
 <div class="flex justify-between items-center my-4">
-  <h1 class="font-bold text-4xl">Measures</h1>
-  <%= link_to 'New command', new_measure_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  <h1 class="font-bold text-4xl">Utilisateurs</h1>
+  <%= link_to 'New User', new_user_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
 </div>
 
 <div class="overflow-x-auto rounded-lg border border-gray-200 w-full">
@@ -11,10 +11,10 @@
           Name
         </th>
         <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-          Email
+          Date of Birth
         </th>
         <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-          Addresse
+          Role
         </th>
         <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
           Phone
@@ -23,9 +23,7 @@
     </thead>
 
     <tbody class="divide-y divide-gray-200">
-      <%= render @measures %>
+      <%= render @users %>
     </tbody>
   </table>
 </div>
-
-

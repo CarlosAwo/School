@@ -1,14 +1,30 @@
-<div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
-
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Customers</h1>
-    <%= link_to 'New customer', new_customer_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-  </div>
-
-  <div id="customers" class="min-w-full">
-    <%= render @customers %>
-  </div>
+<div class="flex justify-between items-center my-4">
+  <h1 class="font-bold text-4xl">Customers</h1>
+  <%= link_to 'New customer', new_customer_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
 </div>
+
+<div class="overflow-x-auto rounded-lg border border-gray-200 w-full">
+  <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+    <thead class="ltr:text-left rtl:text-right">
+      <tr class="center">
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+          Name
+        </th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+          Email
+        </th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+          Addresse
+        </th>
+        <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+          Phone
+        </th>
+      </tr>
+    </thead>
+
+    <tbody class="divide-y divide-gray-200">
+      <%= render @customers %>
+    </tbody>
+  </table>
+</div>
+
